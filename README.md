@@ -1,19 +1,31 @@
-# SchedulerAPISchedulerAPI
+# SchedulerAPI
 
 An API to provide scheduling services to other components
 
-To clone:
+## Pre-requisites:
+1. MySql 5, Ideally 5.44
+2. MySql Workbench
 
-git clone https://github.com/CityofToronto/schedulerAPI
-To setup and run project:
+## To clone:
+
+`git clone https://github.com/CityofToronto/schedulerAPI`
+
+## To setup and run project:
 
 From the root of the project:
 
-mvn clean package spring-boot:run 
-To create a new Schedule (In progress)
+1. Import project inside eclipse
+2. Right click on the Project --> Configure --> Add Gradle nature
+3. Right click on the project --> Gradle --> Refresh gradle project
+4. Refresh your project
+5. For now, the project uses MySQL, so make sure you have downloaded and installed mysql and know the root username and password
+6. Add or remove to Liberty and start server. Make sure there are no errors on the console
+7. Inside MySql workbench, make sure you have a schema by the name of 'schedulerApi' created and the tables have been generated.
+
+## To create a new Schedule (In progress)
 
 Create a JSON file some where on your drive with the following contents:
-
+`
 {
 	"schedule": {
 		"type": "recurring",
@@ -44,6 +56,7 @@ Create a JSON file some where on your drive with the following contents:
 		}
 	}
 }
-Request to POST:
+`
+## Request to POST:
 
-curl -H "Content-Type: application/json" -X POST -d @/path_to_the_Json_file/create.json http://your_ip_address:8080/schedule/api/post 
+`curl -H "Content-Type: application/json" -X POST -d @/path_to_the_Json_file/create.json http://your_ip_address:9080/schedule/api/post` 
