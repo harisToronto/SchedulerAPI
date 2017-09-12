@@ -25,7 +25,7 @@ From the root of the project:
 ## To create a new Schedule (In progress)
 
 Create a JSON file some where on your drive with the following contents:
-`
+```
 {
 	"schedule": {
 		"type": "recurring",
@@ -56,7 +56,8 @@ Create a JSON file some where on your drive with the following contents:
 		}
 	}
 }
-`
+```
+
 ## Request to POST:
 
 `curl -H "Content-Type: application/json" -X POST -d @/path_to_the_Json_file/create.json http://your_ip_address:9080/schedule/api/post` 
