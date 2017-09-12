@@ -1,0 +1,39 @@
+#Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.settings/*
+*.project
+*.classpath
+*.factorypath
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# Directories #
+target/*
+/.apt_generated/
+/.gradle/
+/bin/
+/target/
+/build/
