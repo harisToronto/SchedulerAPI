@@ -61,3 +61,5 @@ Create a JSON file some where on your drive with the following contents:
 ## Request to POST:
 
 `curl -H "Content-Type: application/json" -X POST -d @/path_to_the_Json_file/create.json http://your_ip_address:9080/schedule/api/post` 
+
+**Make sure to checkout the EAR project for your Liberty server as well: https://github.com/harisToronto/SchedulerAPIEAR**
