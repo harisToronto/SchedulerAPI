@@ -19,8 +19,9 @@ From the root of the project:
 3. Right click on the project --> Gradle --> Refresh gradle project
 4. Refresh your project
 5. For now, the project uses MySQL, so make sure you have downloaded and installed mysql and know the root username and password
-6. Add or remove to Liberty and start server. Make sure there are no errors on the console
-7. Inside MySql workbench, make sure you have a schema by the name of 'schedulerApi' created and the tables have been generated.
+6. Make sure to update application.properties file and change 'spring.datasource.username' and 'spring.datasource.password' to reflect the mysql user (if you created a separate user to be used for this API) or admin user.
+7. Add or remove to Liberty and start server. Make sure there are no errors on the console
+8. Inside MySql workbench, make sure you have a schema by the name of 'schedulerApi' created and the tables have been generated.
 
 ## To create a new Schedule (In progress)
 
