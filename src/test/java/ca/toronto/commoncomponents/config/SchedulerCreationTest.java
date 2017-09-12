@@ -1,7 +1,5 @@
 package ca.toronto.commoncomponents.config;
 
-import static org.junit.Assert.fail;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,12 +17,6 @@ public class SchedulerCreationTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
 
 	@Test
 	public void testThatASimpleSchedulerGetsCreatedSuccessfuly() throws Exception {

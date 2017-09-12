@@ -44,8 +44,7 @@ public class JsonDeserializationTest {
 	@Test
     public void testSimpleJsonPayloadNoCustomParamsDeserialize() throws Exception {
         String content = jsonWithNoCustomParams();
-//        assertThat(this.json.parse(content))
-//                .isEqualTo(new VehicleDetails("Ford", "Focus"));
+
         final Payload payload = this.json.parseObject(content);
         assertThat(payload, notNullValue());
         final Schedule schedule = payload.getSchedule();
