@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import javax.persistence.EntityManagerFactory;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.support.ErrorPageFilter;
 import org.springframework.context.MessageSource;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -31,12 +31,7 @@ import ca.toronto.commoncomponents.utils.RestUtils;
 
 @Configuration
 public class AppConfig {
-
-	@Value("${server.port}")
-	String serverPort;
-
-	@Value("${context.api.path}")
-	String contextPath;
+	
 
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
@@ -44,6 +39,14 @@ public class AppConfig {
 		transactionManager.setEntityManagerFactory(emf);
 
 		return transactionManager;
+	}
+	
+	@Bean
+	public Jackson2ObjectMapperBuilder jacksonBuilder() {
+		Jackson2ObjectMapperBuilder objectMapperBuilder = new Jackson2ObjectMapperBuilder();
+		objectMapperBuilder.failOnUnknownProperties(false);
+
+		return objectMapperBuilder;
 	}
 
 	@Bean
@@ -55,24 +58,7 @@ public class AppConfig {
 	}
 
 	@Bean
-	public RestUtils restUtils() {
-		final MappingJackson2HttpMessageConverter converter = converter();
-		final ObjectMapper mapper = new ObjectMapper();
-		mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-		mapper.setSerializationInclusion(Include.NON_NULL);
-		mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-		converter.setObjectMapper(mapper);
-
-		final RestTemplate restTemplate = restTemplate();
-		restTemplate.setMessageConverters(Arrays.asList(new HttpMessageConverter<?>[] { converter }));
-		final RestUtils restUtils = new RestUtils();
-		restUtils.setRestTemplate(restTemplate);
-
-		return restUtils;
-	}
-
-	@Bean
-	SchedulerFactory SchedulerFactory() {
+	public SchedulerFactory SchedulerFactory() {
 		return new SchedulerFactory();
 	}
 
@@ -97,9 +83,27 @@ public class AppConfig {
 	}
 
 	@Bean
+	public RestUtils restUtils() {
+		final MappingJackson2HttpMessageConverter converter = converter();
+		final ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+		mapper.setSerializationInclusion(Include.NON_NULL);
+		mapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
+		converter.setObjectMapper(mapper);
+
+		final RestTemplate restTemplate = restTemplate();
+		restTemplate.setMessageConverters(Arrays.asList(new HttpMessageConverter<?>[] { converter }));
+		final RestUtils restUtils = new RestUtils();
+		restUtils.setRestTemplate(restTemplate);
+
+		return restUtils;
+	}
+
+	@Bean
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("messages");
 		return messageSource;
 	}
+
 }

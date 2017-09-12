@@ -27,6 +27,10 @@ public class Payload implements Serializable {
 	private String id;
 	
 	@JsonDeserialize(using = JsonToStringDeserializer.class)
+	@JsonProperty("ED2")
+	private String ed2;  
+	
+	@JsonDeserialize(using = JsonToStringDeserializer.class)
 	@JsonProperty("params")
 	private String params;    
 	
@@ -39,6 +43,14 @@ public class Payload implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getEd2() {
+		return ed2;
+	}
+
+	public void setEd2(String ed2) {
+		this.ed2 = ed2;
 	}
 
 	public Schedule getSchedule() {

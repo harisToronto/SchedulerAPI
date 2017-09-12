@@ -1,4 +1,4 @@
-package ca.toronto.commoncomponents.scheduler;
+package ca.toronto.commoncomponents.config;
 
 import static org.junit.Assert.fail;
 
