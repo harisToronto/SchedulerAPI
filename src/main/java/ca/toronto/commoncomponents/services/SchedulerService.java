@@ -20,7 +20,7 @@ public class SchedulerService {
 		final Schedule schedule = payload.getSchedule();
 		schedule.setRunParameters(payload.getParams());
 		schedule.getRecurrence().getRunTimes().forEach(runtime -> runtime.setRecurrence(schedule.getRecurrence()));
-		//TODO: fix me. DOn't hardcode exitCriteria -hj
+		//TODO: fix me. Don't hardcode exitCriteria -hj
 		schedule.getRecurrence().setExitCriteria(ExitCriteria.OCCURANCES);
 		scheduleRepository.save(schedule);
 

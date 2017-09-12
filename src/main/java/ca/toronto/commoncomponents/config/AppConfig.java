@@ -48,6 +48,12 @@ public class AppConfig {
 
 		return objectMapperBuilder;
 	}
+	
+	@Bean
+	public ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
+	    ObjectMapper objectMapper = builder.build();
+	    return objectMapper;
+	}
 
 	@Bean
 	public FilterRegistrationBean disableSpringBootErrorFilter(ErrorPageFilter filter) {
